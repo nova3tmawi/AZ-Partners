@@ -1,0 +1,178 @@
+/* =================================================================
+   AZ PARTNERS - FINAL VERSION (FINAL LAYOUT LOGIC)
+   ================================================================= */
+
+/* ----- 1. Global Resets and Variables ----- */
+:root {
+    /* Modern & Clean Font Pairing (As per brand guidelines) */
+    --font-primary: 'Montserrat', sans-serif;
+    --font-secondary: 'Lato', sans-serif;
+    
+    /* FINAL Official Brand Palette */
+    --color-dark: #2F3E46; /* Charcoal Gray for Header/Footer */
+    --color-primary: #2C7A7B; /* Deep Teal for Buttons/Accents */
+    --color-primary-darker: #256a6b; /* Darker Teal for hover */
+    --color-highlight: #D4A017; /* Warm Gold for special links */
+    
+    --color-light-bg: #F6F2EB; /* Soft Beige for section backgrounds */
+    --color-white: #FFFFFF;
+    --color-border: #e0e0e0;
+
+    --text-primary: #333333; /* Primary text color */
+    --text-secondary: #777777; /* Secondary text color */
+
+    --shadow-soft: 0px 10px 30px rgba(0, 0, 0, 0.07);
+    --shadow-medium: 0px 15px 40px rgba(44, 62, 80, 0.15);
+}
+
+/* ----- 2. Basic Setup ----- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; overscroll-behavior-y: contain; }
+body { font-family: var(--font-secondary); line-height: 1.7; background-color: var(--color-white); color: var(--text-primary); font-size: 16px; }
+h1, h2, h3, h4, h5, h6, .logo { font-family: var(--font-primary); font-weight: 700; color: var(--color-dark); }
+h2 { font-size: 3rem; text-align: center; margin-bottom: 3rem; }
+section { padding: 6rem 0; }
+.container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+
+/* ----- 3. Navbar Styling ----- */
+.navbar { background-color: transparent; padding: 1.5rem 0; position: fixed; top: 0; z-index: 1000; width: 100%; transition: background-color 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease; }
+.navbar.scrolled { background-color: rgba(255, 255, 255, 0.97); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 1rem 0; border-bottom: 1px solid var(--color-border); }
+.navbar .container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 1.6rem; text-decoration: none; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
+.navbar.scrolled .logo { color: var(--color-dark); text-shadow: none; }
+.navbar:not(.scrolled) .logo { color: var(--color-white); }
+.logo .az-logo { color: var(--color-primary); }
+.nav-links { list-style: none; display: flex; align-items: center; gap: 2rem; }
+.nav-links a { text-decoration: none; font-weight: 600; transition: color 0.3s ease; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
+.navbar:not(.scrolled) .nav-links a { color: var(--color-white); }
+.navbar.scrolled .nav-links a { color: var(--color-dark); text-shadow: none; }
+.nav-links a:hover { color: var(--color-primary); }
+.nav-links .btn { padding: 10px 24px; text-shadow: none; }
+
+/* ----- 4. Hero Section Styling ----- */
+#hero { min-height: 100vh; display: flex; justify-content: center; align-items: center; text-align: center; color: var(--color-white); padding: 0 20px; position: relative; background-image: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8dGVhbSxidXNpbmVzcyxjb25zdWx0aW5nfHx8fHx8MTY4NzU0NTgxOA&lib=rb-4.0.3&q=80&w=1080'); background-size: cover; background-position: center center; background-attachment: fixed; }
+#hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(47, 62, 70, 0.8), rgba(47, 62, 70, 0.6)); /* Charcoal Gray Overlay */ }
+.hero-content { position: relative; z-index: 2; animation: fadeInHero 1.5s ease-out; }
+#hero .main-tagline, #hero .main-tagline .az-logo { font-size: 6rem; line-height: 1.1; font-weight: 900; color: var(--color-white); }
+#hero .subheading { font-size: 1.5rem; margin-top: 1rem; opacity: 0.9; max-width: 800px; margin-left: auto; margin-right: auto; }
+
+/* ----- 5. General Button Styling ----- */
+.btn { padding: 14px 32px; text-decoration: none; border-radius: 50px; font-weight: 700; font-family: var(--font-secondary); transition: all 0.3s ease; border: 2px solid transparent; display: inline-block; cursor: pointer; }
+.btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-soft); }
+.btn-primary { background-color: var(--color-primary); color: var(--color-white); border-color: var(--color-primary); }
+.btn-primary:hover { background-color: var(--color-primary-darker); border-color: var(--color-primary-darker); }
+
+/* ----- 6. Content Sections Styling ----- */
+#intro, #services, #testimonials, #our-work, #contact-us { border-top: 1px solid var(--color-border); }
+
+/* Sections WITH cards have a beige background */
+#intro, #services, #our-work, #testimonials {
+    background-color: var(--color-light-bg);
+}
+/* Sections WITHOUT cards have a white background */
+#contact-us {
+    background-color: var(--color-white);
+}
+
+#intro p { text-align: center; max-width: 800px; margin: 0 auto 1.5rem; font-size: 1.25rem; color: var(--text-secondary); }
+.section-intro { text-align: center; max-width: 800px; margin: -2rem auto 3rem; font-size: 1.2rem; color: var(--text-secondary); }
+
+
+/* ----- 7. Cards, Features, Testimonials, Portfolio ----- */
+.services-grid, .testimonial-container, .portfolio-grid { display: grid; gap: 2rem; margin-top: 3rem; }
+.services-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.testimonial-container { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+
+/* Setting all cards to have a white background */
+.service-card, .testimonial-item, .portfolio-item {
+    background-color: var(--color-white);
+    padding: 2.5rem 2rem;
+    border-radius: 12px;
+    text-align: center;
+    border-top: 4px solid var(--color-primary);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.service-card:hover, .testimonial-item:hover, .portfolio-item:hover { transform: translateY(-8px); box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.1); }
+.card-icon { font-size: 2.5rem; color: var(--color-primary); margin-bottom: 1.5rem; }
+.service-card h3 { font-size: 1.6rem; color: var(--color-dark); margin-bottom: 1rem; }
+.testimonial-item blockquote { font-style: italic; font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem; color: var(--text-secondary); }
+.testimonial-item cite { font-weight: 700; font-style: normal; color: var(--color-dark); }
+
+/* ----- 8. Our Work (Portfolio) Section Styling ----- */
+.portfolio-grid { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+.portfolio-item {
+    border: 1px solid #EAEAEA;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+}
+.portfolio-icon { font-size: 2.5rem; color: var(--color-primary); margin-bottom: 1.5rem; }
+.portfolio-item h3 { font-size: 1.4rem; margin-bottom: 1rem; }
+.portfolio-item p { flex-grow: 1; color: var(--text-secondary); } 
+
+/* ----- 9. Animation ----- */
+@keyframes fadeInHero { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+.animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+
+/* ----- 10. Visualized Stats Styling ----- */
+.location-info { text-align: center; font-size: 1.1rem; color: var(--text-secondary); margin: 1.5rem auto 0; font-style: italic; max-width: 800px; }
+.location-info i { margin-right: 0.5rem; color: var(--color-primary); }
+.stats-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-top: 3rem; padding-top: 3rem; border-top: 1px solid var(--color-border); }
+.stat-item { text-align: center; display: flex; flex-direction: column; align-items: center; }
+.stat-visual { position: relative; width: 130px; height: 130px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; }
+.progress-ring { position: absolute; top: 0; left: 0; width: 130px; height: 130px; }
+.progress-ring__circle, .progress-ring__circle-bg { fill: transparent; stroke-width: 10; transform: rotate(-90deg); transform-origin: 50% 50%; }
+.progress-ring__circle-bg { stroke: var(--color-border); }
+.progress-ring__circle { stroke: var(--color-primary); stroke-linecap: round; stroke-dasharray: 339.292; stroke-dashoffset: 339.292; }
+.animate-on-scroll.visible .progress-ring__circle { animation: draw-full-circle 2s 0.3s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+.stat-icon { font-size: 2.5rem; color: var(--color-primary); opacity: 0; transform: scale(0.5); transition: opacity 0.5s ease 1s, transform 0.5s ease 1s; }
+.animate-on-scroll.visible .stat-icon { opacity: 1; transform: scale(1); }
+.stat-number { font-family: var(--font-primary); font-size: 3rem; font-weight: 700; color: var(--color-dark); line-height: 1; }
+.stat-label { font-size: 1rem; color: var(--text-secondary); margin-top: 0.5rem; }
+@keyframes draw-full-circle { to { stroke-dashoffset: 0; } }
+
+/* ----- 11. Hero CTA Buttons Styling ----- */
+.hero-cta-buttons { margin-top: 2rem; display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.btn-secondary { background-color: transparent; color: var(--color-white); border-color: var(--color-white); }
+.btn-secondary:hover { background-color: var(--color-white); color: var(--color-dark); border-color: var(--color-white); }
+
+/* ----- 12. Contact Us Section Styling ----- */
+.contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; margin-top: 3rem; align-items: start; }
+.contact-details h3, .contact-form h3 { font-size: 1.8rem; margin-bottom: 1.5rem; }
+.contact-info-list { list-style: none; margin-bottom: 2rem; }
+.contact-info-list li { display: flex; align-items: center; margin-bottom: 1.2rem; font-size: 1.1rem; }
+.contact-info-list i { font-size: 1.4rem; color: var(--color-primary); margin-right: 1rem; width: 25px; text-align: center; }
+.contact-info-list a { text-decoration: none; color: var(--text-primary); transition: color 0.3s; }
+.contact-info-list a:hover { color: var(--color-highlight); }
+.location-details { margin-top: 2rem; display: flex; align-items: center; color: var(--text-secondary); }
+.location-details i { font-size: 1.4rem; color: var(--color-primary); margin-right: 1rem; }
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--color-dark); }
+.contact-form input[type="text"], .contact-form input[type="email"], .contact-form select, .contact-form textarea { width: 100%; padding: 12px 15px; border: 1px solid var(--color-border); border-radius: 8px; font-family: var(--font-secondary); font-size: 1rem; transition: border-color 0.3s, box-shadow 0.3s; }
+.contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(44, 122, 123, 0.2); }
+.form-group-checkbox { display: flex; align-items: center; gap: 0.75rem; }
+.form-group-checkbox label { margin-bottom: 0; font-weight: normal; color: var(--text-secondary); }
+.contact-form button[type="submit"] { width: 100%; margin-top: 1.5rem; padding: 16px; }
+
+/* ----- 13. Site Footer Styling ----- */
+.site-footer { background-color: var(--color-dark); color: var(--color-light-bg); padding: 3rem 0; text-align: center; border-top: 4px solid var(--color-primary); }
+.site-footer p { opacity: 0.8; }
+.footer-cta p { font-size: 1.5rem; font-family: var(--font-primary); margin-bottom: 1.5rem; color: var(--color-white); }
+.footer-cta .btn-secondary { border-width: 2px; color: var(--color-white); border-color: var(--color-white); }
+.footer-cta .btn-secondary:hover { background-color: var(--color-white); color: var(--color-dark); }
+.footer-bottom { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+.footer-bottom p { opacity: 0.7; }
+
+/* ----- 14. Media Queries for Responsiveness ----- */
+@media (max-width: 992px) {
+    .contact-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+    h2 { font-size: 2.5rem; }
+    #hero .main-tagline { font-size: 4rem; }
+    #hero .subheading { font-size: 1.2rem; }
+    .portfolio-grid, .services-grid, .testimonial-container { grid-template-columns: 1fr; }
+    .nav-links { display: none; /* Add JS for mobile menu later */ }
+}
