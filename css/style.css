@@ -28,7 +28,7 @@
 
 /* ----- 2. Basic Setup ----- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth;font-size: 80%;  }
 body { font-family: var(--font-secondary); line-height: 1.7; background-color: var(--color-white); color: var(--text-primary); font-size: 16px; }
 h1, h2, h3, h4, h5, h6, .logo { font-family: var(--font-primary); font-weight: 700; color: var(--color-dark); }
 h2 { font-size: 3rem; text-align: center; margin-bottom: 3rem; }
