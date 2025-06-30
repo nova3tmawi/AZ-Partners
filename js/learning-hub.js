@@ -71,6 +71,7 @@ function renderContent(groupedContent) {
 /**
  * Sets up event listeners for the modal.
  */
+
 function setupModal() {
     const modal = document.getElementById('article-modal');
     const closeButton = modal.querySelector('.close-button');
@@ -78,35 +79,31 @@ function setupModal() {
     const modalBody = document.getElementById('modal-body');
     const hubGrid = document.querySelector('.hub-grid');
 
-    // Event delegation: listen for clicks on the main container
     hubGrid.addEventListener('click', function(event) {
         const link = event.target.closest('a');
 
-        // Check if a link was clicked and if it's an article
         if (link && link.dataset.type === 'article') {
-            event.preventDefault(); // Stop the link from navigating
-
-            // Populate and show the modal
+            event.preventDefault(); 
             modalTitle.textContent = link.dataset.title;
             const content = JSON.parse(link.dataset.content);
-            modalBody.innerHTML = toHTML(content); // Convert Portable Text to HTML
+
+            // This is now back to the simple, default conversion
+            modalBody.innerHTML = toHTML(content);
+
             modal.style.display = 'block';
         }
     });
 
-    // Close the modal when the close button is clicked
     closeButton.onclick = function() {
         modal.style.display = 'none';
     }
 
-    // Close the modal if the user clicks outside of the content area
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = 'none';
         }
     }
 }
-
 
 /**
  * Main function to fetch and render all content.
