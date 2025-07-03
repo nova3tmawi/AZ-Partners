@@ -1,0 +1,62 @@
+/* --- ENHANCED BUTTONS --- */
+.btn { padding: 14px 32px; text-decoration: none; border-radius: 8px; font-weight: 700; font-family: var(--font-secondary); transition: all 0.3s ease; border: 2px solid transparent; display: inline-block; cursor: pointer; }
+.btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-medium); }
+
+.btn-primary { background-color: var(--color-primary); color: var(--color-white); border-color: var(--color-primary); }
+.btn-primary:hover { background-color: var(--color-primary-darker); border-color: var(--color-primary-darker); }
+
+.btn-az-color {
+    background-color: var(--color-highlight);
+    border-color: var(--color-highlight);
+    color: var(--color-white);
+}
+.btn-az-color:hover {
+    background-color: var(--color-highlight-darker);
+    border-color: var(--color-highlight-darker);
+    color: var(--color-white);
+}
+
+.btn-secondary { background-color: transparent; color: var(--color-white); border-color: var(--color-white); }
+.btn-secondary:hover { background-color: var(--color-white); color: var(--color-dark); border-color: var(--color-white); }
+
+.btn-whatsapp {
+    background-color: #25D366;
+    color: var(--color-white);
+    font-size: 1.1rem;
+    padding: 14px 28px;
+    border: 2px solid #25D366;
+}
+.btn-whatsapp:hover {
+    background-color: #1EAE54;
+    border-color: #1EAE54;
+    color: var(--color-white);
+}
+.btn-whatsapp i {
+    margin-right: 0.75rem;
+}
+
+
+/* --- SPECIAL "CONTACT US" BUTTON IN NAVBAR --- */
+.nav-links .btn.btn-primary {
+    padding: 10px 24px;
+    text-shadow: none;
+    background-color: var(--color-primary);
+    color: var(--color-white) !important;
+    border: 2px solid var(--color-primary);
+}
+.nav-links .btn.btn-primary:hover {
+    background-color: var(--color-primary-darker);
+    border-color: var(--color-primary-darker);
+    color: var(--color-white) !important;
+}
+/* Special style for when it's on the hero banner */
+.navbar:not(.scrolled) .nav-links .btn.btn-primary {
+    background-color: var(--color-white);
+    border-color: var(--color-white);
+    color: var(--color-primary) !important;
+}
+.navbar:not(.scrolled) .nav-links .btn.btn-primary:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0.9);
+    color: var(--color-primary) !important;
+}

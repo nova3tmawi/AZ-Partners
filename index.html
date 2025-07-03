@@ -11,30 +11,41 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components/navbar.css">
+    <link rel="stylesheet" href="css/components/buttons.css">
+    <link rel="stylesheet" href="css/components/footer.css">
+    <link rel="stylesheet" href="css/pages/home.css">
 </head>
 <body>
 
     <nav class="navbar">
         <div class="container">
             <a href="index.html" class="logo"><span class="az-logo">AZ</span> Partners</a>
-            <div class="menu-toggle" id="mobile-menu">
+            <button class="menu-toggle" id="mobile-menu" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-links-list">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
-            </div>
-            <ul class="nav-links">
+            </button>
+            <ul class="nav-links" id="nav-links-list">
                 <li><a href="about-us.html">About Us</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="our-work.html">Our Work</a></li>
                 <li><a href="az-learning-hub.html">AZ Learning Hub</a></li>
-                <li><a href="peace-nexus-relay.html">Peace NexusRelay</a></li>
+                <li><a href="peace-nexus.html">Peace Nexus</a></li>
                 <li><a href="contact.html" class="btn btn-primary">Contact Us</a></li>
             </ul>
         </div>
     </nav>
-
+    
     <header id="hero">
+        <img 
+            src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2084&auto=format&fit=crop" 
+            alt="A collaborative team working together in a modern office." 
+            class="hero-background-image" 
+            loading="lazy">
+            
         <div class="hero-content">
             <h1 class="hero-title"><span class="az-logo">AZ</span> Partners</h1>
             <p class="hero-tagline">Measure Twice, Cut Once.</p>
@@ -146,6 +157,6 @@
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

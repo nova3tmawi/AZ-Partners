@@ -1,0 +1,91 @@
+/* ----- 1. Global Resets and Variables ----- */
+:root {
+    /* Modern & Clean Font Pairing */
+    --font-primary: 'Montserrat', sans-serif;
+    --font-secondary: 'Lato', sans-serif;
+    
+    /* FINAL Official Brand Palette */
+    --color-dark: #2F3E46; /* Charcoal Gray for Header/Footer */
+    --color-primary: #2C7A7B; /* Deep Teal for Buttons/Accents */
+    --color-primary-darker: #256a6b; /* Darker Teal for hover */
+    --color-highlight: #6A8D9F; /* Sophisticated Slate Blue (AZ Color) */
+    --color-highlight-darker: #5B7C8F; /* Darker slate for hover */
+    
+    --color-light-hover: rgba(44, 122, 123, 0.1); /* Light teal for hover on solid bg */
+    --color-dark-hover: rgba(0, 0, 0, 0.2); /* Dark overlay for hover on transparent bg */
+
+    --color-light-bg: #F8F9FA; /* Clean, crisp off-white for sections */
+    --color-white: #FFFFFF;
+    --color-border: #DDDDDD; /* Made border slightly darker for visibility */
+
+    --text-primary: #333333; /* Primary text color */
+    --text-secondary: #777777; /* Secondary text color */
+
+    --shadow-soft: 0px 10px 30px rgba(0, 0, 0, 0.07);
+    --shadow-medium: 0px 15px 40px rgba(44, 62, 80, 0.15);
+    --navbar-height: 90px;
+}
+
+/* ----- 2. Basic Setup ----- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth;font-size: 80%;  }
+body { font-family: var(--font-secondary); line-height: 1.7; background-color: var(--color-white); color: var(--text-primary); font-size: 16px; }
+h1, h2, h3, h4, h5, h6, .logo { font-family: var(--font-primary); font-weight: 700; color: var(--color-dark); }
+h2 { font-size: 3rem; text-align: center; margin-bottom: 3rem; }
+section { padding: 6rem 20px; }
+.container { max-width: 1360px; margin: 0 auto; padding: 0 20px; }
+.section-intro { text-align: center; max-width: 800px; margin: -2rem auto 3rem; font-size: 1.2rem; color: var(--text-secondary); }
+
+/* ----- 10. Animation & Generic Page Styling ----- */
+@keyframes fadeInHero { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+.animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+
+.page-header {
+    padding: 8rem 0 5rem 0; 
+    text-align: center;
+    background-color: var(--color-light-bg); 
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--color-border);
+}
+.page-header h1 {
+    font-size: 4rem;
+    color: var(--color-dark);
+    margin-bottom: 1rem;
+}
+.page-header h1 .az-gold {
+    color: var(--color-highlight); 
+}
+.page-header p {
+    font-size: 1.25rem;
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 1;
+}
+.content-section { padding: 5rem 20px; }
+.content-section h2 { text-align: left; font-size: 2.5rem; margin-bottom: 2rem; }
+.content-section h3 { font-size: 1.8rem; margin-bottom: 1rem; color: var(--color-dark); }
+.content-section p, .content-section ul { margin-bottom: 1.5rem; color: var(--text-secondary); font-size: 1.1rem; line-height: 1.8; }
+.content-section ul { padding-left: 20px; }
+.content-section .about-content { max-width: 850px; margin: 0 auto; }
+
+/* ----- 13. Media Queries for Responsiveness (General) ----- */
+@media (max-width: 992px) {
+    h2 { font-size: 2.5rem; }
+    .page-header h1 { font-size: 3rem; }
+}
+
+@media (max-width: 768px) {
+    section, .content-section { padding: 4rem 15px; }
+    .container { padding: 0 15px; }
+    h2 { font-size: 2.2rem; }
+    .page-header h1 { font-size: 3rem; }
+}
+
+/* ----- NEW - Accessibility fix: Reset default styles for the menu toggle button ----- */
+.menu-toggle {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}

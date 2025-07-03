@@ -1,0 +1,64 @@
+/* ----- 3. Navbar & Mobile Menu ----- */
+.navbar { background-color: transparent; padding: 1.8rem 0; position: fixed; top: 0; z-index: 1000; width: 100%; transition: background-color 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease; height: var(--navbar-height); display: flex; align-items: center; }
+.navbar.scrolled { background-color: rgba(255, 255, 255, 0.97); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 1.2rem 0; border-bottom: 1px solid var(--color-border); }
+.navbar .container { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+.logo { 
+    font-size: 2.2rem; /* CHANGED from 1.8rem */
+    text-decoration: none; 
+    color: var(--color-white); 
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2); 
+}
+.navbar.scrolled .logo { color: var(--color-dark); text-shadow: none; }
+.logo .az-logo { color: var(--color-highlight); }
+
+.nav-links { list-style: none; display: flex; align-items: center; gap: 1.5rem; /* Increased gap for more breathing room */ }
+.nav-links a { 
+    text-decoration: none; 
+    font-weight: 700;
+    transition: color 0.3s ease, transform 0.3s ease, background-color 0.3s ease; 
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    font-size: 1.1rem;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+}
+.navbar:not(.scrolled) .nav-links a { color: var(--color-white); }
+.navbar.scrolled .nav-links a { color: var(--color-dark); text-shadow: none; }
+
+/* --- NAVBAR HOVER & ACTIVE STATE REFINEMENT --- */
+.navbar.scrolled .nav-links a:not(.btn):hover,
+.navbar.scrolled .nav-links a:not(.btn).active {
+    color: var(--color-highlight);
+    transform: translateY(-2px);
+    background-color: var(--color-light-hover);
+}
+
+.navbar:not(.scrolled) .nav-links a:not(.btn):hover,
+.navbar:not(.scrolled) .nav-links a:not(.btn).active {
+    color: var(--color-white);
+    transform: translateY(-2px);
+    background-color: var(--color-dark-hover);
+}
+
+.menu-toggle { display: none; flex-direction: column; justify-content: space-between; width: 30px; height: 21px; cursor: pointer; }
+.menu-toggle .bar { height: 3px; width: 100%; background-color: var(--color-white); border-radius: 10px; transition: all 0.3s ease; }
+.navbar.scrolled .menu-toggle .bar { background-color: var(--color-dark); }
+
+.menu-toggle.active .bar {
+    background-color: var(--color-white) !important;
+}
+.menu-toggle.active .bar:nth-child(1) { transform: rotate(-45deg) translate(-7px, 6px); }
+.menu-toggle.active .bar:nth-child(2) { opacity: 0; }
+.menu-toggle.active .bar:nth-child(3) { transform: rotate(45deg) translate(-7px, -6px); }
+
+/* --- Mobile Menu Media Queries --- */
+@media (max-width: 768px) {
+    .navbar .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .menu-toggle { display: flex; z-index: 1001; }
+    .nav-links { position: fixed; top: 0; right: 0; width: 80%; max-width: 320px; height: 100vh; background-color: var(--color-dark); flex-direction: column; justify-content: center; align-items: center; gap: 2.5rem; transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1); }
+    .nav-links.active { transform: translateX(0); box-shadow: -10px 0px 30px rgba(0,0,0,0.2); }
+    .nav-links a { color: var(--color-white) !important; text-shadow: none; font-size: 1.2rem; }
+    .nav-links .btn { border-color: var(--color-white); }
+}

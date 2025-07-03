@@ -11,24 +11,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components/navbar.css">
+    <link rel="stylesheet" href="css/components/buttons.css">
+    <link rel="stylesheet" href="css/components/footer.css">
 </head>
 <body>
 
     <nav class="navbar">
         <div class="container">
             <a href="index.html" class="logo"><span class="az-logo">AZ</span> Partners</a>
-            <div class="menu-toggle" id="mobile-menu">
+            <button class="menu-toggle" id="mobile-menu" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-links-list">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="about-us.html" class="active">About Us</a></li>
+            </button>
+            <ul class="nav-links" id="nav-links-list">
+                <li><a href="about-us.html">About Us</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="our-work.html">Our Work</a></li>
                 <li><a href="az-learning-hub.html">AZ Learning Hub</a></li>
-                <li><a href="peace-nexus-relay.html">Peace NexusRelay</a></li>
+                <li><a href="peace-nexus.html">Peace Nexus</a></li>
                 <li><a href="contact.html" class="btn btn-primary">Contact Us</a></li>
             </ul>
         </div>
@@ -52,17 +56,17 @@
                     </div>
 
                     <div class="animate-on-scroll">
-                        <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+                        <h3>Our Mission</h3>
                         <p>To help organizations and businesses turn their vision into measurable, sustainable outcomes through tailored consulting, strategic planning, and capacity-building support.</p>
                     </div>
 
                     <div class="animate-on-scroll">
-                        <h3><i class="far fa-eye"></i> Our Vision</h3>
+                        <h3>Our Vision</h3>
                         <p>To be a trusted partner for NGOs, SMEs, and institutions seeking to grow their impact, strengthen their teams, and implement meaningful change — locally and across the MENA region.</p>
                     </div>
 
                     <div class="animate-on-scroll">
-                        <h3><i class="fas fa-cogs"></i> Our Approach</h3>
+                        <h3>Our Approach</h3>
                         <p>At AZ Partners, we believe that impact grows from listening, strategy, and values in action. That’s why our approach blends customized technical support with a deep commitment to the principles that shape meaningful, responsible development. We start by understanding your context — not just your goals, but your constraints, environment, and stakeholders. From there, we co-design strategies and solutions that are realistic, data-informed, and owned by your team. Our consulting style is collaborative, not prescriptive.</p>
                         <p>Our work is grounded in five guiding commitments:</p>
                         <ul>
@@ -75,7 +79,7 @@
                     </div>
 
                     <div class="animate-on-scroll">
-                        <h3><i class="fas fa-users"></i> Our Team</h3>
+                        <h3>Our Team</h3>
                         <p>We are a multidisciplinary group of consultants, project managers, trainers, and specialists. Each member brings deep knowledge in their field — from proposal development and MEAL systems to financial planning, PR strategy, and organizational design. We combine strategic expertise with cultural sensitivity, field experience, and a collaborative mindset. This allows us to support a wide range of partners — from grassroots organizations to international development agencies — with agility, professionalism, and care.</p>
                     </div>
                 </div>

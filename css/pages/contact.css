@@ -1,0 +1,119 @@
+/* ----- 8. Contact Form General Styling ----- */
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--color-dark); }
+.contact-form input[type="text"], .contact-form input[type="email"], .contact-form select, .contact-form textarea { width: 100%; padding: 12px 15px; border: 1px solid var(--color-border); border-radius: 8px; font-family: var(--font-secondary); font-size: 1rem; transition: border-color 0.3s, box-shadow 0.3s; }
+.contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(44, 122, 123, 0.2); }
+.contact-form button[type="submit"] { width: 100%; margin-top: 1.5rem; padding: 16px; }
+
+/* ----- 15. Contact Page & CTA Styles ----- */
+.contact-page-section {
+    background-color: var(--color-light-bg);
+}
+
+.highlighted-contact-card {
+    background: linear-gradient(135deg, var(--color-dark), var(--color-primary));
+    color: var(--color-white);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-medium);
+    margin-bottom: 4rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+.highlighted-contact-card .card-icon {
+    font-size: 4rem;
+    color: #25D366;
+}
+.highlighted-contact-card h2 {
+    color: var(--color-white);
+    text-align: left;
+    margin-bottom: 0.5rem;
+}
+.highlighted-contact-card p {
+    color: var(--color-light-bg);
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: flex-start;
+}
+#map {
+    height: 300px;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: var(--shadow-soft);
+    z-index: 1;
+    margin-bottom: 1.5rem;
+}
+
+.contact-form-container {
+    background-color: var(--color-white);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-soft);
+}
+.contact-form-container h2 {
+    text-align: left;
+    margin-bottom: 0.5rem;
+}
+.contact-form-container p {
+    margin-bottom: 2rem;
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+.contact-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+.contact-details-map-wrapper {
+    background-color: var(--color-white);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-soft);
+}
+.contact-details-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.5rem;
+}
+.contact-details-list li {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+.contact-details-list li i {
+    color: var(--color-highlight);
+    margin-right: 1rem;
+    font-size: 1.5rem;
+    width: 25px;
+    text-align: center;
+}
+
+/* --- Media Queries for Contact Page --- */
+@media (max-width: 992px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .highlighted-contact-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    .highlighted-contact-card h2 {
+        text-align: center;
+    }
+    .contact-form .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
