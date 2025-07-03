@@ -25,17 +25,14 @@ function groupContentByCategory(content) {
  * @param {Object} groupedContent - The content grouped by category.
  */
 function renderContent(groupedContent) {
-  // Select all category cards from the page
   const categoryCards = document.querySelectorAll('.hub-category-card');
 
   categoryCards.forEach(card => {
     const categoryValue = card.dataset.category;
     const articleListElement = card.querySelector('.article-list');
     
-    // Clear any existing content
     articleListElement.innerHTML = '';
 
-    // Check if we have content for this category
     if (groupedContent[categoryValue]) {
       const contentForCategory = groupedContent[categoryValue];
       
@@ -43,17 +40,15 @@ function renderContent(groupedContent) {
         const li = document.createElement('li');
         const a = document.createElement('a');
         a.textContent = item.title;
-        a.href = '#'; // We will handle clicks via JavaScript
+        a.href = '#';
 
-        // Store the content for the modal directly on the link element
         if (item._type === 'article') {
           a.dataset.title = item.title;
-          // We stringify the rich text content to store it
           a.dataset.content = JSON.stringify(item.content); 
           a.dataset.type = 'article';
         } else if (item._type === 'video') {
-          a.href = item.videoUrl; // For videos, the link goes directly to the URL
-          a.target = '_blank'; // Open videos in a new tab
+          a.href = item.videoUrl;
+          a.target = '_blank';
           a.rel = 'noopener noreferrer';
           a.dataset.type = 'video';
         }
@@ -61,9 +56,6 @@ function renderContent(groupedContent) {
         li.appendChild(a);
         articleListElement.appendChild(li);
       });
-    } else {
-        // If no content, we can display a message, or leave it empty as requested.
-        // For now, we leave it empty.
     }
   });
 }
@@ -71,9 +63,10 @@ function renderContent(groupedContent) {
 /**
  * Sets up event listeners for the modal.
  */
-
 function setupModal() {
     const modal = document.getElementById('article-modal');
+    if (!modal) return; // Exit if no modal on page
+
     const closeButton = modal.querySelector('.close-button');
     const modalTitle = document.getElementById('modal-title');
     const modalBody = document.getElementById('modal-body');
@@ -87,9 +80,7 @@ function setupModal() {
             modalTitle.textContent = link.dataset.title;
             const content = JSON.parse(link.dataset.content);
 
-            // This is now back to the simple, default conversion
             modalBody.innerHTML = toHTML(content);
-
             modal.style.display = 'block';
         }
     });
@@ -109,22 +100,37 @@ function setupModal() {
  * Main function to fetch and render all content.
  */
 async function loadLearningContent() {
-  console.log("Attempting to fetch data from Sanity...");
-  const query = '*[_type == "article" || _type == "video"]{..., "slug": slug.current}';
+    const hubSpinner = document.getElementById('hub-spinner');
+    const hubGrid = document.querySelector('.hub-grid');
   
-  try {
-    const allContent = await client.fetch(query);
-    console.log("✅ Data from Sanity has arrived!", allContent);
+    // This check is important. If there's no spinner on the page, don't try to control it.
+    if (!hubSpinner || !hubGrid) return;
+
+    console.log("Attempting to fetch data from Sanity...");
+    hubSpinner.style.display = 'flex'; // Show spinner
+    hubGrid.style.display = 'none'; // Hide grid
+
+    const query = '*[_type == "article" || _type == "video"]{..., "slug": slug.current}';
+  
+    try {
+        const allContent = await client.fetch(query);
+        console.log("✅ Data from Sanity has arrived!", allContent);
     
-    const groupedContent = groupContentByCategory(allContent);
-    console.log("Content grouped by category:", groupedContent);
+        const groupedContent = groupContentByCategory(allContent);
+        console.log("Content grouped by category:", groupedContent);
 
-    renderContent(groupedContent);
-    setupModal();
+        renderContent(groupedContent);
+        setupModal();
 
-  } catch (err) {
-    console.error("🚨 Error fetching data from Sanity:", err);
-  }
+    } catch (err) {
+        console.error("🚨 Error fetching data from Sanity:", err);
+        hubGrid.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">Sorry, there was an error loading the content. Please try again later.</p>';
+    } finally {
+        // This 'finally' block ensures the spinner is hidden and grid is shown,
+        // regardless of whether the fetch succeeded or failed.
+        hubSpinner.style.display = 'none';
+        hubGrid.style.display = 'grid';
+    }
 }
 
 // Run the main function when the page loads

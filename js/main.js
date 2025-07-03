@@ -30,9 +30,9 @@ document.addEventListener('DOMContentLoaded', function() {
         navbar.classList.add('scrolled');
     }
 
-    // --- Mobile Menu Toggle (ACCESSIBILITY ENHANCED) ---
+    // --- Mobile Menu Toggle ---
     const menuToggle = document.getElementById('mobile-menu');
-    const navLinksList = document.getElementById('nav-links-list'); // Target the UL by its new ID
+    const navLinksList = document.getElementById('nav-links-list'); 
 
     menuToggle.addEventListener('click', () => {
         const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
         menuToggle.classList.toggle('active');
         navLinksList.classList.toggle('active');
         
-        // Update aria attributes for screen readers
         menuToggle.setAttribute('aria-expanded', !isExpanded);
         if (!isExpanded) {
             menuToggle.setAttribute('aria-label', 'Close navigation menu');
@@ -62,42 +61,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.animate-on-scroll').forEach((el) => {
         sectionObserver.observe(el);
     });
-
-    // --- Article Modal Logic ---
-    const articleLinks = document.querySelectorAll('.article-list a');
-    const modal = document.getElementById('article-modal');
-    
-    if (modal) {
-        const modalTitle = document.getElementById('modal-title');
-        const modalBody = document.getElementById('modal-body');
-        const closeButton = document.querySelector('.close-button');
-
-        const articles = {
-            "What We Learned Managing Emergency Shelters in Gaza": { title: "Lessons in Crisis: Managing Emergency Shelters in Gaza", content: `<p>Coordinating emergency shelter for over 10,000 displaced individuals...[content]...</p>` },
-            "Lessons from Home-Based Income Projects for Women": { title: "Empowerment from Home: Scaling Income-Generating Projects", content: `<p>...[content]...</p>` },
-            // ... other articles
-        };
-
-        articleLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const articleKey = this.textContent;
-                
-                if (articles[articleKey]) {
-                    modalTitle.textContent = articles[articleKey].title;
-                    modalBody.innerHTML = articles[articleKey].content;
-                    modal.style.display = "block";
-                } else {
-                    modalTitle.textContent = "Content Coming Soon";
-                    modalBody.innerHTML = "<p>This article is currently being written. Please check back later!</p>";
-                    modal.style.display = "block";
-                }
-            });
-        });
-
-        closeButton.onclick = function() { modal.style.display = "none"; }
-        window.onclick = function(event) { if (event.target == modal) { modal.style.display = "none"; } }
-    }
     
     // --- Automatic Copyright Year ---
     const copyrightYearSpan = document.querySelector('.copyright-year');

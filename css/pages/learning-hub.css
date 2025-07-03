@@ -21,3 +21,25 @@
     .subscribe-form { flex-direction: column; }
     .subscribe-form input { border-radius: 8px; }
 }
+
+/* --- ADDED - Loading Spinner Styles --- */
+.loading-spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 0;
+}
+
+.loading-spinner {
+    border: 6px solid var(--color-light-bg);
+    border-top: 6px solid var(--color-highlight);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
