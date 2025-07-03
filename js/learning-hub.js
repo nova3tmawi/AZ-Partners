@@ -33,7 +33,7 @@ function renderContent(groupedContent) {
     
     articleListElement.innerHTML = '';
 
-    if (groupedContent[categoryValue]) {
+    if (groupedContent[categoryValue] && groupedContent[categoryValue].length > 0) {
       const contentForCategory = groupedContent[categoryValue];
       
       contentForCategory.forEach(item => {
@@ -56,6 +56,10 @@ function renderContent(groupedContent) {
         li.appendChild(a);
         articleListElement.appendChild(li);
       });
+    } else {
+        // If there's no content for this category, you can leave it empty
+        // or add a message like this:
+        // articleListElement.innerHTML = '<li>No articles in this category yet.</li>';
     }
   });
 }
@@ -65,12 +69,14 @@ function renderContent(groupedContent) {
  */
 function setupModal() {
     const modal = document.getElementById('article-modal');
-    if (!modal) return; // Exit if no modal on page
+    if (!modal) return;
 
     const closeButton = modal.querySelector('.close-button');
     const modalTitle = document.getElementById('modal-title');
     const modalBody = document.getElementById('modal-body');
     const hubGrid = document.querySelector('.hub-grid');
+
+    if (!hubGrid) return; // Add safety check for the grid
 
     hubGrid.addEventListener('click', function(event) {
         const link = event.target.closest('a');
@@ -101,15 +107,13 @@ function setupModal() {
  */
 async function loadLearningContent() {
     const hubSpinner = document.getElementById('hub-spinner');
-    const hubGrid = document.querySelector('.hub-grid');
   
-    // This check is important. If there's no spinner on the page, don't try to control it.
-    if (!hubSpinner || !hubGrid) return;
+    // Safety check: if there's no spinner, exit the function.
+    if (!hubSpinner) return;
 
     console.log("Attempting to fetch data from Sanity...");
-    hubSpinner.style.display = 'flex'; // Show spinner
-    hubGrid.style.display = 'none'; // Hide grid
-
+    // Spinner is visible by default now, we only need to hide it.
+    
     const query = '*[_type == "article" || _type == "video"]{..., "slug": slug.current}';
   
     try {
@@ -124,12 +128,14 @@ async function loadLearningContent() {
 
     } catch (err) {
         console.error("🚨 Error fetching data from Sanity:", err);
-        hubGrid.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">Sorry, there was an error loading the content. Please try again later.</p>';
+        // Display an error without destroying the page layout
+        const hubGrid = document.querySelector('.hub-grid');
+        if (hubGrid) {
+            hubGrid.innerHTML = '<p style="text-align: center; color: var(--text-secondary); grid-column: 1 / -1;">Sorry, there was an error loading the content. Please try again later.</p>';
+        }
     } finally {
-        // This 'finally' block ensures the spinner is hidden and grid is shown,
-        // regardless of whether the fetch succeeded or failed.
+        // This 'finally' block ensures the spinner is always hidden.
         hubSpinner.style.display = 'none';
-        hubGrid.style.display = 'grid';
     }
 }
 
