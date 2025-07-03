@@ -31,7 +31,7 @@ function renderContent(groupedContent) {
     const categoryValue = card.dataset.category;
     const articleListElement = card.querySelector('.article-list');
     
-    articleListElement.innerHTML = '';
+    articleListElement.innerHTML = ''; // Clear any previous content
 
     if (groupedContent[categoryValue] && groupedContent[categoryValue].length > 0) {
       const contentForCategory = groupedContent[categoryValue];
@@ -56,10 +56,6 @@ function renderContent(groupedContent) {
         li.appendChild(a);
         articleListElement.appendChild(li);
       });
-    } else {
-        // If there's no content for this category, you can leave it empty
-        // or add a message like this:
-        // articleListElement.innerHTML = '<li>No articles in this category yet.</li>';
     }
   });
 }
@@ -76,7 +72,7 @@ function setupModal() {
     const modalBody = document.getElementById('modal-body');
     const hubGrid = document.querySelector('.hub-grid');
 
-    if (!hubGrid) return; // Add safety check for the grid
+    if (!hubGrid) return;
 
     hubGrid.addEventListener('click', function(event) {
         const link = event.target.closest('a');
@@ -107,35 +103,27 @@ function setupModal() {
  */
 async function loadLearningContent() {
     const hubSpinner = document.getElementById('hub-spinner');
+    const hubGrid = document.querySelector('.hub-grid');
   
-    // Safety check: if there's no spinner, exit the function.
-    if (!hubSpinner) return;
-
-    console.log("Attempting to fetch data from Sanity...");
-    // Spinner is visible by default now, we only need to hide it.
+    if (!hubSpinner || !hubGrid) return;
     
+    // Make the grid invisible while we load, to prevent a "flash" of unstyled content.
+    hubGrid.style.opacity = '0';
+
     const query = '*[_type == "article" || _type == "video"]{..., "slug": slug.current}';
   
     try {
         const allContent = await client.fetch(query);
-        console.log("✅ Data from Sanity has arrived!", allContent);
-    
         const groupedContent = groupContentByCategory(allContent);
-        console.log("Content grouped by category:", groupedContent);
-
         renderContent(groupedContent);
         setupModal();
-
     } catch (err) {
         console.error("🚨 Error fetching data from Sanity:", err);
-        // Display an error without destroying the page layout
-        const hubGrid = document.querySelector('.hub-grid');
-        if (hubGrid) {
-            hubGrid.innerHTML = '<p style="text-align: center; color: var(--text-secondary); grid-column: 1 / -1;">Sorry, there was an error loading the content. Please try again later.</p>';
-        }
+        hubGrid.innerHTML = '<p style="text-align: center; color: var(--text-secondary); grid-column: 1 / -1;">Sorry, there was an error loading the content. Please try again later.</p>';
     } finally {
-        // This 'finally' block ensures the spinner is always hidden.
-        hubSpinner.style.display = 'none';
+        // This is the new, robust logic.
+        hubSpinner.remove(); // Physically remove the spinner from the page.
+        hubGrid.style.opacity = '1'; // Make the grid and its new content visible.
     }
 }
 
