@@ -49,6 +49,7 @@
     font-size: 1.1rem;
     line-height: 1.8;
     margin-bottom: 1rem;
+    overflow-wrap: break-word; /* THIS IS THE FIX */
 }
 
 @keyframes fadeIn {
@@ -61,7 +62,7 @@
     to { transform: translateY(0); opacity: 1; }
 }
 
-/* --- ADDED - Styles for dynamically generated content inside modal --- */
+/* --- Styles for dynamically generated content inside modal --- */
 #modal-body p {
     margin-bottom: 1.5rem; /* Adds space between paragraphs */
     color: var(--text-secondary);
