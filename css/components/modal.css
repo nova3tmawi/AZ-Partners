@@ -45,7 +45,7 @@
     text-align: left;
 }
 
-#modal-body p {
+#modal-body {
     font-size: 1.1rem;
     line-height: 1.8;
     margin-bottom: 1rem;
@@ -59,4 +59,41 @@
 @keyframes slideIn {
     from { transform: translateY(-50px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
+}
+
+/* --- ADDED - Styles for dynamically generated content inside modal --- */
+#modal-body p {
+    margin-bottom: 1.5rem; /* Adds space between paragraphs */
+    color: var(--text-secondary);
+}
+
+#modal-body strong {
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+#modal-body ul, #modal-body ol {
+    margin-bottom: 1.5rem;
+    padding-left: 25px; /* Adds space for bullets/numbers */
+}
+
+#modal-body li {
+    margin-bottom: 0.75rem; /* Adds space between list items */
+}
+
+#modal-body a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+#modal-body a:hover {
+    color: var(--color-primary-darker);
+}
+
+#modal-body h3, #modal-body h4 {
+    font-family: var(--font-primary);
+    color: var(--color-dark);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
 }
